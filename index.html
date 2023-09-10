@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let result = "";
+        let wins = 0;
+        let losses = 0;
+
+        function getComputerChoice() {
+            const choices = ["rock", "paper", "scissors"];
+            const randNum = Math.floor(Math.random() * choices.length);
+            return choices[randNum];
+        } 
+
+        function playRound(playerSelection, computerSelection) {
+            computerSelection = getComputerChoice();
+            playerSelection = prompt('Enter your choice:').toLowerCase();
+
+            if (playerSelection === computerSelection) {
+                result = "It's a tie!";
+                return result;
+            } else if (
+                (playerSelection === "rock" && computerSelection === "scissors") ||
+                (playerSelection === "paper" && computerSelection === "rock") ||
+                (playerSelection === "scissors" && computerSelection === "paper")
+            ) {
+                wins++;
+                result = `You win this round as ${playerSelection} beats ${computerSelection}!`;
+                return result;
+            } else {
+                losses++;
+                result = `You lose this round as ${computerSelection} beats ${playerSelection}!`;
+                return result;
+            }
+        }
+
+        function game() {
+            let rounds;
+
+            for (rounds = 0; rounds < 5; rounds++) {
+                playRound();
+                console.log(result);
+            }
+
+            if (wins > losses) {
+                console.log("You win the game!");
+            } else {
+                console.log("You lose the game!");
+            }
+        }
+    </script>
+</body>
+</html>
